@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace ContactBook_ViewsNavigation.Views
 {
-    /// <summary>
-    /// Interaction logic for OrdersView.xaml
-    /// </summary>
     public partial class OrdersView : UserControl
     {
         public OrdersView()

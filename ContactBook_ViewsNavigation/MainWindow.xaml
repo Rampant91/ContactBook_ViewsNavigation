@@ -4,10 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ContactBook_ViewsNavigation"
-        xmlns:v="clr-namespace:ContactBook_ViewsNavigation.Views"
+        xmlns:v="clr-namespace:ContactBook_ViewsNavigation.Views" 
+        xmlns:vm="clr-namespace:ContactBook_ViewsNavigation.ViewModels" 
+        d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="700">
     <Grid>
-        <v:ContactsView/>
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type vm:ContactsViewModel}">
+                <v:ContactsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:OrdersViewModel}">
+                <v:OrdersView/>
+            </DataTemplate>
+        </Grid.Resources>
+        <ContentControl Content="{Binding CurrentViewModel}"/>
     </Grid>
 </Window>
