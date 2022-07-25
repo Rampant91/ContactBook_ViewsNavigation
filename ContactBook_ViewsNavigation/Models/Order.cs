@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ContactBook_ViewsNavigation.Models
 {
@@ -19,6 +14,8 @@ namespace ContactBook_ViewsNavigation.Models
         public int Price { get; set; }
 
         public int Amount { get; set; }
+
+        public string? Date { get; set; }
 
         public string? Discription { get; set; }
     }
