@@ -8,10 +8,12 @@ using System.Windows;
 
 namespace ContactBook_ViewsNavigation
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs startupEventArgs)
+        {
+            MainWindow = new MainWindow();
+            MainWindow.Show();
+        }
     }
 }
