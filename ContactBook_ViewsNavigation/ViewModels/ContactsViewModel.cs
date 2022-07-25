@@ -1,12 +1,19 @@
-﻿using ContactBook_ViewsNavigation.DbRealization;
+﻿using ContactBook_ViewsNavigation.Commands;
+using ContactBook_ViewsNavigation.DbRealization;
 using ContactBook_ViewsNavigation.Models;
+using ContactBook_ViewsNavigation.Store;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace ContactBook_ViewsNavigation.ViewModels
 {
     public class ContactsViewModel : BaseViewModel
     {
         #region Commands
+        public ICommand AddContact { get; set; }
+        public ICommand DeleteContact { get; set; }
+        public ICommand SaveContact { get; set; }
+        public ICommand NavToOrders { get; set; }
 
         #endregion
 
@@ -116,9 +123,12 @@ namespace ContactBook_ViewsNavigation.ViewModels
         #endregion
 
         #region Constructor
-        public ContactsViewModel()
+        public ContactsViewModel(NavigationStore navigationStore)
         {
-
+            AddContact = new AddCommand(this);
+            DeleteContact = new DeleteCommand(this);
+            SaveContact = new SaveCommand(this);
+            NavToOrders = new NavToOrdersCommand(this, navigationStore);
             using (DataContext db = new DataContext())
             {
                 if (db.Contacts != null)

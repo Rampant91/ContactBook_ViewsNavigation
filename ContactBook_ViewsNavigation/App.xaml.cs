@@ -16,7 +16,7 @@ namespace ContactBook_ViewsNavigation
 
         protected override void OnStartup(StartupEventArgs startupEventArgs)
         {
-            navigationStore.CurrentViewModel = new ContactsViewModel();
+            navigationStore.CurrentViewModel = new ContactsViewModel(navigationStore);
             MainWindow = new MainWindow() 
             {
                 DataContext = new MainViewModel(navigationStore)

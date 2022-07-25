@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ContactBook_ViewsNavigation.Views"
+             xmlns:local="clr-namespace:ContactBook_ViewsNavigation.Views" 
+             xmlns:vm="clr-namespace:ContactBook_ViewsNavigation.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=vm:OrdersViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="700">
     <Grid>
@@ -27,17 +29,26 @@
                 </ListBox>
             </Grid>
             <Grid Grid.Row="1" >
-                <StackPanel Orientation="Horizontal">
-                    <Button Command="{Binding AddOrder}" Height="60" Width="60" VerticalAlignment="Center" Margin="20,10,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Button Command="{Binding AddOrder}" Height="60" Width="60" Margin="10">
                         <TextBlock TextAlignment="Center"> Добавить <LineBreak/> заказ</TextBlock>
                     </Button>
-                    <Button Command="{Binding EditOrder}" CommandParameter="{Binding SelectedOrder}" Height="60" Width="60" VerticalAlignment="Center" Margin="20,10,0,10">
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Button Command="{Binding EditOrder}" CommandParameter="{Binding SelectedOrder}" Height="60" Width="60" Margin="10">
                         <TextBlock TextAlignment="Center"> Изменить <LineBreak/> заказ</TextBlock>
                     </Button>
-                    <Button Command="{Binding DeleteOrder}" CommandParameter="{Binding SelectedOrder}" Height="60" Width="60" VerticalAlignment="Center" Margin="20,10,0,10">
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Button Command="{Binding DeleteOrder}" CommandParameter="{Binding SelectedOrder}" Height="60" Width="60" Margin="10">
                         <TextBlock TextAlignment="Center"> Удалить <LineBreak/> заказ</TextBlock>
                     </Button>
-                </StackPanel>
+                </Grid>
             </Grid>
         </Grid>
         <GridSplitter Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
@@ -63,7 +74,12 @@
                 </ScrollViewer>
             </Grid>
             <Grid Grid.Row="1">
-                <Button Grid.Row="1" Command="{Binding SaveOrder}" CommandParameter="{Binding SelectedOrder}" Content="Сохранить" Height="60" Margin="10"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Command="{Binding SaveOrder}" CommandParameter="{Binding SelectedOrder}" Content="Сохранить" Height="60" Margin="10"/>
+                <Button Grid.Column="1" Command="{Binding CloseOrders}" Content="Закрыть" Height="60" Margin="10"/>
             </Grid>
         </Grid>
     </Grid>

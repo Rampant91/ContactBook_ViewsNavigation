@@ -1,10 +1,17 @@
-﻿using System;
+﻿using ContactBook_ViewsNavigation.Store;
+using System;
 using System.Windows.Input;
 
 namespace ContactBook_ViewsNavigation.Commands
 {
     public abstract class BaseCommand : ICommand
     {
+        public readonly NavigationStore? _navigationStore;
+        public BaseCommand(NavigationStore? navigationStore = null)
+        {
+            _navigationStore = navigationStore;
+        }
+
         public event EventHandler? CanExecuteChanged;
 
         public void OnCanExecuteChanged()

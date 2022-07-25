@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ContactBook_ViewsNavigation.Views"
+             xmlns:local="clr-namespace:ContactBook_ViewsNavigation.Views" 
+             xmlns:vm="clr-namespace:ContactBook_ViewsNavigation.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=vm:ContactsViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="700">
     <Grid>
@@ -39,13 +41,13 @@
                     <ColumnDefinition Width="10*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <Button Command="{Binding AddCommand}" Content="Добавить" VerticalContentAlignment="Center" VerticalAlignment="Stretch" MinWidth="40" Margin="5"/>
+                    <Button Command="{Binding AddContact}" Content="Добавить" VerticalContentAlignment="Center" VerticalAlignment="Stretch" MinWidth="40" Margin="5"/>
                 </Grid>
                 <Grid Grid.Column="2">
-                    <Button Command="{Binding EditCommand}" Content="Изменить" VerticalContentAlignment="Center" VerticalAlignment="Stretch" MinWidth="40" Margin="5"/>
+                    <Button Content="Изменить" VerticalContentAlignment="Center" VerticalAlignment="Stretch" MinWidth="40" Margin="5"/>
                 </Grid>
                 <Grid Grid.Column="4">
-                    <Button Command="{Binding DeleteCommand}" Content="Удалить" VerticalContentAlignment="Center" VerticalAlignment="Stretch" MinWidth="40" Margin="5"/>
+                    <Button Command="{Binding DeleteContact}" Content="Удалить" VerticalContentAlignment="Center" VerticalAlignment="Stretch" MinWidth="40" Margin="5"/>
                 </Grid>
             </Grid>
         </Grid>
@@ -81,10 +83,10 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0" MinWidth="50">
-                    <Button Command="{Binding SaveCommand}" CommandParameter="{Binding SelectedContact}" Content="Сохранить" Width="100" Height="50" MinWidth="50" Margin="5"/>
+                    <Button Command="{Binding SaveContact}" CommandParameter="{Binding SelectedContact}" Content="Сохранить" Width="100" Height="50" MinWidth="50" Margin="5"/>
                 </Grid>
                 <Grid Grid.Column="1" MinWidth="50">
-                    <Button Command="{Binding OpenOrdersCommand}" CommandParameter="{Binding SelectedContact}" Content="Открыть заказы" Width="100" Height="50" MinWidth="50" VerticalAlignment="Bottom" Margin="5"/>
+                    <Button Command="{Binding NavToOrders}" CommandParameter="{Binding SelectedContact}" Content="Открыть заказы" Width="100" Height="50" MinWidth="50" VerticalAlignment="Bottom" Margin="5"/>
                 </Grid>
             </Grid>
         </Grid>

@@ -1,13 +1,19 @@
-﻿using ContactBook_ViewsNavigation.DbRealization;
+﻿using ContactBook_ViewsNavigation.Commands;
+using ContactBook_ViewsNavigation.DbRealization;
 using ContactBook_ViewsNavigation.Models;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Input;
 
 namespace ContactBook_ViewsNavigation.ViewModels
 {
     internal class OrdersViewModel : BaseViewModel
     {
         #region Commands
-
+        public ICommand AddOrder { get; set; }
+        public ICommand DeleteOrder { get; set; }
+        public ICommand SaveOrder { get; set; }
+        public ICommand CloseOrders { get; set; }
         #endregion
 
         #region Orders
@@ -105,14 +111,18 @@ namespace ContactBook_ViewsNavigation.ViewModels
         #endregion
 
         #region Constructor
-        public OrdersViewModel()
+        public OrdersViewModel(int contactId)
         {
-
+            AddOrder = new AddCommand(this);
+            DeleteOrder = new DeleteCommand(this);
+            SaveOrder = new SaveCommand(this);
+            //CloseOrders = new CloseCommand(this);
+            ContactId = contactId;
             using (DataContext db = new DataContext())
             {
                 if (db.Orders != null)
                 {
-                    Orders = new ObservableCollection<Order>(db.Orders);
+                    Orders = new ObservableCollection<Order>(db.Orders.Where(x => x.ContactId == contactId));
                 }
                 else
                 {
