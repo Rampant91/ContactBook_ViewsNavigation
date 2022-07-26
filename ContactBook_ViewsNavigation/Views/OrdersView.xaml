@@ -79,7 +79,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" Command="{Binding SaveOrder}" CommandParameter="{Binding SelectedOrder}" Content="Сохранить" Height="60" Margin="10"/>
-                <Button Grid.Column="1" Command="{Binding CloseOrders}" Content="Закрыть" Height="60" Margin="10"/>
+                <Button Grid.Column="1" Command="{Binding NavToContacts}" Content="Закрыть" Height="60" Margin="10"/>
             </Grid>
         </Grid>
     </Grid>

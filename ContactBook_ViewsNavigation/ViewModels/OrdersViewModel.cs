@@ -1,6 +1,7 @@
 ﻿using ContactBook_ViewsNavigation.Commands;
 using ContactBook_ViewsNavigation.DbRealization;
 using ContactBook_ViewsNavigation.Models;
+using ContactBook_ViewsNavigation.Store;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -13,7 +14,7 @@ namespace ContactBook_ViewsNavigation.ViewModels
         public ICommand AddOrder { get; set; }
         public ICommand DeleteOrder { get; set; }
         public ICommand SaveOrder { get; set; }
-        public ICommand CloseOrders { get; set; }
+        public ICommand NavToContacts { get; set; }
         #endregion
 
         #region Orders
@@ -111,12 +112,12 @@ namespace ContactBook_ViewsNavigation.ViewModels
         #endregion
 
         #region Constructor
-        public OrdersViewModel(int contactId)
+        public OrdersViewModel(NavigationStore navigationStore, int contactId)
         {
             AddOrder = new AddCommand(this);
             DeleteOrder = new DeleteCommand(this);
             SaveOrder = new SaveCommand(this);
-            //CloseOrders = new CloseCommand(this);
+            NavToContacts = new NavToContactsCommand(navigationStore);
             ContactId = contactId;
             using (DataContext db = new DataContext())
             {

@@ -29,7 +29,7 @@ namespace ContactBook_ViewsNavigation.Commands
 
         public override void Execute(object? parameter)
         {
-            _navigationStore.CurrentViewModel = new OrdersViewModel(_contactsViewModel.SelectedContact.ContactId);
+            _navigationStore.CurrentViewModel = new OrdersViewModel(_navigationStore, _contactsViewModel.SelectedContact.ContactId);
         }
     }
 }
