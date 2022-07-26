@@ -6,7 +6,7 @@ namespace ContactBook_ViewsNavigation.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        #region NotifyChanged
+        #region INotifyPropertyChanged
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "")
